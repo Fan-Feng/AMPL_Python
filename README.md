@@ -1,6 +1,5 @@
 # AMPL_Python
-A bridge between AMPL and Python allowing users to define external functions in Python and use those functions inside AMPL models. This is based on existing work by (https://github.com/PythonOptimizers/pyampl)PyOptimizer.Based on their work, the following modifications
-have been made;
+A bridge between AMPL and Python allowing users to define external functions in Python and use those functions inside AMPL models. This is based on existing work by [PyOptimizer](https://github.com/PythonOptimizers/pyampl). Based on their work, the following modifications have been made;
   * Make it work on windows.
   * Because there is some problem with*Clang* on my computer, so I use *gcc* instead
     * To achieve this, I need to modify the `Makefile`
