@@ -44,9 +44,36 @@ If nothing goes wrong, we will get this dll file. Now we can load it in AMPL to 
 
 Again, if nothing goes wrong, AMPL will display
 	>p1=0.1
+	
+**3)** `amplfunc.dll` with Python embedded
+Now, we could embed Python to make Python functions accessible to AMPL. 
+Reference [manual](https://docs.python.org/2/extending/embedding.html) are available on Python's official website. There are mainly two ways to embed python in C: very high level embedding, and pure embedding. Through the official tutorials we could implement this by ourselves. 
+Now, we could add one more function in **function.c** which will call Python function in turn. Then, we have get our **function.c** version 2, which is also the **function.c** given in this repository. 
+Then, we could move forward to compile **amplfunc.dll**. In addition, we need to add Python to our include directories and lib directories. 
+After this, run **make**, and we will get a new **amplfunc.dll.** The following AMPL test script is used test if it works.
 
+	load amplfunc.dll;
+	function Py_log;
+	param p1;
+	let p1:=Py_log(1);
+	display p1;
+
+If nothing goes wrong, we will get
+>p1=0;
 
 #### Q&A
 **1.** Different from compiling an executable program, compiling an DLL file requires us to provide an argument--:**-shared** to gcc command. Otherwise, 
-    
+**2.** Because amplsolv.lib has redefined some C functions, like "printf". Therefore, we need to put **Python.h** before **funcadd.h** as below. Otherwise, we will get some errors.
+```cpp
+#include "Python.h"
+#include "asl/funcadd.h"
+```
+**3.**  No module named site on Windows
+Actually, I has not figured out the cause of this problem. However, I found a feasible solution that is putting the statement--**Py_NoSiteFlag** before initializing Python interpreter as below. 
+```cpp
+	Py_NoSiteFlag = 1;
+	//Initialize python interpreter
+	Py_Initialize();
+```
+**4.** There might be some deprecated Python functions or statements like **PyUnicode_fromDouble**, and this could be simply fixed by using **PyString_fromDouble**.
 
