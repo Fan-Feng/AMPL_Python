@@ -35,7 +35,12 @@ Usually the compilation tasks are defined in a **Makefile** file. There are many
 After this, run **make**to compile **amplfunc.dll**.
 If nothing goes wrong, we will get this dll file. Now we can load it in AMPL to see if it works. The test script is shown below.
 
-![Alt text](./Figs/AMPL_code1.png)
+	>load amplfunc.dll;
+	>function ginv;
+	>
+	>param p1;
+	>let p1 := ginv(10);
+	>display p1;
 
 Again, if nothing goes wrong, AMPL will display
 	>p1=0.1
