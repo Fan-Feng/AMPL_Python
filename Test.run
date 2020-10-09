@@ -1,0 +1,6 @@
+load amplfunc.dll;
+function ginv;
+
+param p1;
+let p1 := ginv(10);
+display p1;
