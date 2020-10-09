@@ -62,7 +62,8 @@ If nothing goes wrong, we will get
 >p1=0;
 
 #### Q&A
-**1.** Different from compiling an executable program, compiling an DLL file requires us to provide an argument--:**-shared** to gcc command. Otherwise, 
+**1.** Different from compiling an executable program, compiling an DLL file requires us to provide an argument--:**-shared** to gcc command.
+
 **2.** Because amplsolv.lib has redefined some C functions, like "printf". Therefore, we need to put **Python.h** before **funcadd.h** as below. Otherwise, we will get some errors.
 ```cpp
 #include "Python.h"
