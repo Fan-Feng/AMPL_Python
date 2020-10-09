@@ -7,7 +7,7 @@ A bridge between AMPL and Python allowing users to define external functions in 
 Because the official AMPL APIs to Python just allow us to transfer data with AMPL or to change the algebraic statements of the objectives and constraints. However, to the best of my knowledge, we are not allowed to use external **Python functions**  inside AMPL models. Thus, this work is devoted to bridge this gap. 
 
 The whole flowchart are shown below.
-![Alt text|center](./1602206361547.png)
+![Flowchart](./Figs/Flowchart.png)
 
 **1)** Preparation
 You need to have GCC or other compilers(e.g. Clang, MSVC) in your computer. For convenience, you could install Mingw, which is a collection of several compilers. You need to add it to you path to allow you run it from command line.
