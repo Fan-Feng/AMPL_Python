@@ -62,7 +62,9 @@ If nothing goes wrong, we will get
 >p1=0;
 
 #### Q&A
-**1.** Different from compiling an executable program, compiling an DLL file requires us to provide an argument--:**-shared** to gcc command.
+**1.** Different from compiling an executable program, compiling an DLL file requires us to provide an argument--:**-shared** to gcc command.Otherwise, we will get the following error
+>C Programming undefined reference to `WinMain@16'
+
 
 **2.** Because amplsolv.lib has redefined some C functions, like "printf". Therefore, we need to put **Python.h** before **funcadd.h** as below. Otherwise, we will get some errors.
 ```cpp
@@ -72,9 +74,9 @@ If nothing goes wrong, we will get
 **3.**  No module named site on Windows
 Actually, I has not figured out the cause of this problem. However, I found a feasible solution that is putting the statement--**Py_NoSiteFlag** before initializing Python interpreter as below. 
 ```cpp
-	Py_NoSiteFlag = 1;
-	//Initialize python interpreter
-	Py_Initialize();
+Py_NoSiteFlag = 1;
+//Initialize python interpreter
+Py_Initialize();
 ```
 **4.** There might be some deprecated Python functions or statements like **PyUnicode_fromDouble**, and this could be simply fixed by using **PyString_fromDouble**.
 
